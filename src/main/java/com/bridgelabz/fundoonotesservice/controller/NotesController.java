@@ -77,61 +77,65 @@ public class NotesController {
 		Response response = new Response(200, "Fetching notes by id successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-	
+
 	/**
 	 * Purpose:archeive note by id
 	 */
-	
+
 	@PutMapping("/archeivenote/{id}")
 	public ResponseEntity<Response> archeiveNote(@PathVariable Long id, @RequestHeader String token) {
 		NotesModel notesModel = notesService.archeiveNote(id, token);
 		Response response = new Response(200, "Note archeived successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-	
+
 	/**
 	 * Purpose:unarcheive note by id
 	 */
-	
+
 	@PutMapping("/unarcheivenote/{id}")
 	public ResponseEntity<Response> unArcheiveNote(@PathVariable Long id, @RequestHeader String token) {
 		NotesModel notesModel = notesService.unArcheiveNote(id, token);
 		Response response = new Response(200, "Note unarcheived successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-	
+
 	/**
 	 * Purpose:trash note by id
 	 */
-	
+
 	@PutMapping("/trashNote/{id}")
 	public ResponseEntity<Response> trashNote(@PathVariable Long id, @RequestHeader String token) {
 		NotesModel notesModel = notesService.trashNote(id, token);
 		Response response = new Response(200, "Note trashed successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-	
+
 	/**
 	 * Purpose:restore note by id
 	 */
-	
-	@GetMapping("/restoreNote/{id}")
+
+	@PutMapping("/restoreNote/{id}")
 	public ResponseEntity<Response> restoreNote(@PathVariable Long id, @RequestHeader String token) {
 		NotesModel notesModel = notesService.restoreNote(id, token);
 		Response response = new Response(200, "Note restored successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
-	
+
 	/**
 	 * Purpose:delete note by id
 	 */
-	
+
 	@DeleteMapping("/deletenote/{id}")
 	public ResponseEntity<Response> deleteNote(@PathVariable Long id, @RequestHeader String token) {
 		Response notesModel = notesService.deleteNote(id, token);
 		Response response = new Response(200, "Note deleted successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+	
+	/**
+	 * Purpose:change note colour
+	 */
 	
 	@PutMapping("/changeNoteColour/{id}")
 	public ResponseEntity<Response> changeNoteColour(@PathVariable Long id, @RequestParam String colour, @RequestHeader String token) {
@@ -140,12 +144,20 @@ public class NotesController {
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 	
+	/**
+	 * Purpose:pin note 
+	 */
+	
 	@PutMapping("/pinNote/{id}")
 	public ResponseEntity<Response> pinNote(@PathVariable Long id, @RequestHeader String token) {
 		NotesModel notesModel = notesService.pinNote(id, token);
 		Response response = new Response(200, "Note pinned successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+	
+	/**
+	 * Purpose:unpin note
+	 */
 	
 	@PutMapping("/unpinNote/{id}")
 	public ResponseEntity<Response> unpinNote(@PathVariable Long id, @RequestHeader String token) {

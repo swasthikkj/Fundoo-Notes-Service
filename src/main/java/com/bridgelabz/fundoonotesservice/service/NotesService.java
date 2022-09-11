@@ -92,7 +92,7 @@ public class NotesService implements INotesService {
 		}
 		throw new NotesNotFoundException(400, "Token not found");
 	}
-	
+
 	@Override
 	public NotesModel archeiveNote(Long id, String token) {
 		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundoouserservice/validateuser/" + token, Boolean.class);
@@ -104,10 +104,10 @@ public class NotesService implements INotesService {
 				return isNotesPresent.get();
 			}
 			throw new NotesNotFoundException(400, "Notes not present");	
-			}
+		}
 		throw new NotesNotFoundException(400, "Token not find");
 	}
-	
+
 	@Override
 	public NotesModel unArcheiveNote(Long id, String token) {
 		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundoouserservice/validateuser/" + token, Boolean.class);
@@ -119,10 +119,10 @@ public class NotesService implements INotesService {
 				return isNotesPresent.get();
 			}
 			throw new NotesNotFoundException(400, "Notes not present");	
-			}
+		}
 		throw new NotesNotFoundException(400, "Token not find");
 	}
-	
+
 	public NotesModel trashNote(Long id, String token) {
 		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundoouserservice/validateuser/" + token, Boolean.class);
 		if (isUserPresent) {
@@ -133,10 +133,10 @@ public class NotesService implements INotesService {
 				return isNotesPresent.get();
 			}
 			throw new NotesNotFoundException(400, "Notes not present");	
-			}
+		}
 		throw new NotesNotFoundException(400, "Token not find");
 	}
-	
+
 	@Override
 	public NotesModel restoreNote(Long id, String token) {
 		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundoouserservice/validateuser/" + token, Boolean.class);
@@ -148,10 +148,10 @@ public class NotesService implements INotesService {
 				return isNotesPresent.get();
 			}
 			throw new NotesNotFoundException(400, "Notes not present");	
-			}
+		}
 		throw new NotesNotFoundException(400, "Token not find");
 	}
-	
+
 	@Override
 	public Response deleteNote(Long id, String token) {
 		Long userId = tokenUtil.decodeToken(token);
@@ -167,7 +167,7 @@ public class NotesService implements INotesService {
 		}
 		throw new NotesNotFoundException(400, "Invalid token");
 	}
-	
+
 	@Override
 	public NotesModel changeNoteColour(Long id, String colour, String token) {
 		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundoouserservice/validateuser/" + token, Boolean.class);
@@ -179,10 +179,10 @@ public class NotesService implements INotesService {
 				return isIdPresent.get();
 			}
 			throw new NotesNotFoundException(400, "Notes not present");	
-			}
+		}
 		throw new NotesNotFoundException(400, "Token not find");
 	}
-	
+
 	@Override
 	public NotesModel pinNote(Long id, String token) {
 		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundoouserservice/validateuser/" + token, Boolean.class);
@@ -194,10 +194,10 @@ public class NotesService implements INotesService {
 				return isIdPresent.get();
 			}
 			throw new NotesNotFoundException(400, "Notes not present");	
-			}
+		}
 		throw new NotesNotFoundException(400, "Token not found");
 	}
-	
+
 	@Override
 	public NotesModel unpinNote(Long id, String token) {
 		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundoouserservice/validateuser/" + token, Boolean.class);
@@ -209,7 +209,7 @@ public class NotesService implements INotesService {
 				return isIdPresent.get();
 			}
 			throw new NotesNotFoundException(400, "Notes not present");	
-			}
+		}
 		throw new NotesNotFoundException(400, "Token not found");
 	}
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bridgelabz.fundoonotesservice.dto.NotesDTO;
@@ -129,6 +130,27 @@ public class NotesController {
 	public ResponseEntity<Response> deleteNote(@PathVariable Long id, @RequestHeader String token) {
 		Response notesModel = notesService.deleteNote(id, token);
 		Response response = new Response(200, "Note deleted successfully", notesModel);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
+	@PutMapping("/changeNoteColour/{id}")
+	public ResponseEntity<Response> changeNoteColour(@PathVariable Long id, @RequestParam String colour, @RequestHeader String token) {
+		NotesModel notesModel = notesService.changeNoteColour(id, colour, token);
+		Response response = new Response(200, "Note colour changed successfully", notesModel);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
+	@PutMapping("/pinNote/{id}")
+	public ResponseEntity<Response> pinNote(@PathVariable Long id, @RequestHeader String token) {
+		NotesModel notesModel = notesService.pinNote(id, token);
+		Response response = new Response(200, "Note pinned successfully", notesModel);
+		return new ResponseEntity<>(response, HttpStatus.OK);
+	}
+	
+	@PutMapping("/unpinNote/{id}")
+	public ResponseEntity<Response> unpinNote(@PathVariable Long id, @RequestHeader String token) {
+		NotesModel notesModel = notesService.unpinNote(id, token);
+		Response response = new Response(200, "Note unpinned successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 }

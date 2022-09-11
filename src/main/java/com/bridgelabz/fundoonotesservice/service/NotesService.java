@@ -167,4 +167,49 @@ public class NotesService implements INotesService {
 		}
 		throw new NotesNotFoundException(400, "Invalid token");
 	}
+	
+	@Override
+	public NotesModel changeNoteColour(Long id, String colour, String token) {
+		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundoouserservice/validateuser/" + token, Boolean.class);
+		if (isUserPresent) {
+			Optional<NotesModel> isIdPresent = notesRepository.findById(id);
+			if(isIdPresent.isPresent()) {
+				isIdPresent.get().setColor(colour);
+				notesRepository.save(isIdPresent.get());
+				return isIdPresent.get();
+			}
+			throw new NotesNotFoundException(400, "Notes not present");	
+			}
+		throw new NotesNotFoundException(400, "Token not find");
+	}
+	
+	@Override
+	public NotesModel pinNote(Long id, String token) {
+		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundoouserservice/validateuser/" + token, Boolean.class);
+		if (isUserPresent) {
+			Optional<NotesModel> isIdPresent = notesRepository.findById(id);
+			if(isIdPresent.isPresent()) {
+				isIdPresent.get().setPin(true);
+				notesRepository.save(isIdPresent.get());
+				return isIdPresent.get();
+			}
+			throw new NotesNotFoundException(400, "Notes not present");	
+			}
+		throw new NotesNotFoundException(400, "Token not found");
+	}
+	
+	@Override
+	public NotesModel unpinNote(Long id, String token) {
+		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundoouserservice/validateuser/" + token, Boolean.class);
+		if (isUserPresent) {
+			Optional<NotesModel> isIdPresent = notesRepository.findById(id);
+			if(isIdPresent.isPresent()) {
+				isIdPresent.get().setPin(false);
+				notesRepository.save(isIdPresent.get());
+				return isIdPresent.get();
+			}
+			throw new NotesNotFoundException(400, "Notes not present");	
+			}
+		throw new NotesNotFoundException(400, "Token not found");
+	}
 }

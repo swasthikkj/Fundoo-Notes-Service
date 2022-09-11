@@ -26,5 +26,11 @@ public interface INotesService {
 	NotesModel restoreNote(Long id, String token);
 
 	Response deleteNote(Long id, String token);
+
+	NotesModel changeNoteColour(Long id, String colour, String token);
+
+	NotesModel pinNote(Long id, String token);
+
+	NotesModel unpinNote(Long id, String token);
 	
 }

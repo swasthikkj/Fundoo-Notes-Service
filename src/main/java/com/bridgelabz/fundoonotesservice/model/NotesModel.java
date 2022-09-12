@@ -1,8 +1,6 @@
 package com.bridgelabz.fundoonotesservice.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,7 +32,6 @@ public class NotesModel {
 	private String emailId;
 	private String color;
 	private LocalDateTime reminderTime;
-//	List<String> collaborator;
 	
 	public NotesModel(NotesDTO notesDTO) {
 		this.title = notesDTO.getTitle();

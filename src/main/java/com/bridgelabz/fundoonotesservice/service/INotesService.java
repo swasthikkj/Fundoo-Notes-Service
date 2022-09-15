@@ -7,6 +7,12 @@ import com.bridgelabz.fundoonotesservice.dto.NotesDTO;
 import com.bridgelabz.fundoonotesservice.model.NotesModel;
 import com.bridgelabz.fundoonotesservice.util.Response;
 
+/**
+ * Purpose:Interface for notes service
+ * @version 4.15.1.RELEASE
+ * @author Swasthik KJ
+ */
+
 public interface INotesService {
 	
 	NotesModel createNotes(NotesDTO notesDTO, String token);
@@ -32,5 +38,17 @@ public interface INotesService {
 	NotesModel pinNote(Long id, String token);
 
 	NotesModel unpinNote(Long id, String token);
+	
+	List<NotesModel> getAllPinNotes(String token);
+
+	List<NotesModel> getAllArchievedNotes(String token);
+
+	List<NotesModel> getAllTrashNotes(String token);
+
+	NotesModel noteLabelList(Long noteId, Long labelId, String token);
+
+	NotesModel addCollaborator(String emailId, Long noteId, List<String> collaborator);
+
+	NotesModel remainder(String token, Long noteId, String remaindTime);
 	
 }

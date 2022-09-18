@@ -40,7 +40,7 @@ public class LabelService implements ILabelService {
 	
 	@Override
 	public LabelModel createLabel(LabelDTO labelDTO, String token) {
-		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundoouserservice/validateuser/" + token, Boolean.class);
+		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundooUserService/validateUser/" + token, Boolean.class);
 		if (isUserPresent) {
 			LabelModel model = new LabelModel(labelDTO);
 			model.setRegisterDate(LocalDateTime.now());
@@ -55,10 +55,10 @@ public class LabelService implements ILabelService {
 	 */
 	
 	@Override
-	public LabelModel updateLabel(LabelDTO labelDTO, Long id, String token) {
-		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundoouserservice/validateuser/" + token, Boolean.class);
+	public LabelModel updateLabel(LabelDTO labelDTO, Long labelId, String token) {
+		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundooUserService/validateUser/" + token, Boolean.class);
 		if (isUserPresent) {
-			Optional<LabelModel>isLabelPresent = labelRepository.findById(id);
+			Optional<LabelModel>isLabelPresent = labelRepository.findById(labelId);
 			if(isLabelPresent.isPresent()) {
 				isLabelPresent.get().setLabelName(labelDTO.getLabelName());
 				isLabelPresent.get().setUpdateDate(LocalDateTime.now());
@@ -76,7 +76,7 @@ public class LabelService implements ILabelService {
 	
 	@Override
 	public List<LabelModel> getAllLabels(String token) {
-		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundoouserservice/validateuser/" + token, Boolean.class);
+		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundooUserService/validateUser/" + token, Boolean.class);
 		if (isUserPresent) {
 			List<LabelModel> getAllLabels = labelRepository.findAll();
 			if(getAllLabels.size()>0) {
@@ -92,10 +92,10 @@ public class LabelService implements ILabelService {
 	 */
 	
 	@Override
-	public LabelModel deleteLabel(Long id, String token) {
-		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundoouserservice/validateuser/" + token, Boolean.class);
+	public LabelModel deleteLabel(Long labelId, String token) {
+		boolean isUserPresent = restTemplate.getForObject("http://FundooUserService:8088/fundooUserService/validateUser/" + token, Boolean.class);
 		if (isUserPresent) {
-			Optional<LabelModel> isLabelPresent = labelRepository.findById(id);
+			Optional<LabelModel> isLabelPresent = labelRepository.findById(labelId);
 			if(isLabelPresent.isPresent()) {
 				labelRepository.delete(isLabelPresent.get());
 				return isLabelPresent.get();

@@ -17,7 +17,7 @@ public interface ILabelService {
 
 	List<LabelModel> getAllLabels(String token);
 
-	LabelModel updateLabel(LabelDTO labelDTO, Long id, String token);
+	LabelModel updateLabel(LabelDTO labelDTO, Long labelId, String token);
 	
-	LabelModel deleteLabel(Long id, String token);
+	LabelModel deleteLabel(Long labelId, String token);
 }

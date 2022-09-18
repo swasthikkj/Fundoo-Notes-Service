@@ -31,7 +31,7 @@ import com.bridgelabz.fundoonotesservice.util.Response;
  */
 
 @RestController
-@RequestMapping("/fundoonoteservice")
+@RequestMapping("/fundooNoteService")
 public class NotesController {
 	@Autowired
 	INotesService notesService;
@@ -40,7 +40,7 @@ public class NotesController {
 	 * Purpose:create notes
 	 */
 
-	@PostMapping("/createnotes")
+	@PostMapping("/createNotes")
 	public ResponseEntity<Response> createNotes(@Valid @RequestBody NotesDTO notesDTO, @RequestHeader String token) {
 		NotesModel notesModel = notesService.createNotes(notesDTO, token);
 		Response response = new Response(200, "Notes created successfully", notesModel);
@@ -51,9 +51,9 @@ public class NotesController {
 	 * Purpose:update notes
 	 */
 
-	@PutMapping("/updatenotes/{id}")
-	public ResponseEntity<Response> updateNotes(@Valid @RequestBody NotesDTO notesDTO, @PathVariable Long id, @RequestHeader String token) {
-		NotesModel notesModel = notesService.updateNotes(notesDTO, id, token);
+	@PutMapping("/updateNotes/{noteId}")
+	public ResponseEntity<Response> updateNotes(@PathVariable Long noteId, @Valid @RequestBody NotesDTO notesDTO, @RequestHeader String token) {
+		NotesModel notesModel = notesService.updateNotes(noteId, notesDTO, token);
 		Response response = new Response(200, "Notes updated successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
@@ -62,7 +62,7 @@ public class NotesController {
 	 * Purpose:read all notes
 	 */
 
-	@GetMapping("/readallnotes")
+	@GetMapping("/readAllNotes")
 	public ResponseEntity<Response> readAllNotes(@RequestHeader String token) {
 		List<NotesModel> notesModel = notesService.readAllNotes(token);
 		Response response = new Response(200, "Fetching all notes successfully", notesModel);
@@ -73,9 +73,9 @@ public class NotesController {
 	 * Purpose:read notes by id
 	 */
 
-	@GetMapping("/readnotesbyid/{id}")
-	public ResponseEntity<Response> readNotesById(@PathVariable Long id, @RequestHeader String token){
-		Optional<NotesModel> notesModel = notesService.readNotesById(id, token);
+	@GetMapping("/readNotesById/{noteId}")
+	public ResponseEntity<Response> readNotesById(@PathVariable Long noteId, @RequestHeader String token){
+		Optional<NotesModel> notesModel = notesService.readNotesById(noteId, token);
 		Response response = new Response(200, "Fetching notes by id successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
@@ -84,9 +84,9 @@ public class NotesController {
 	 * Purpose:archeive note by id
 	 */
 
-	@PutMapping("/archeivenote/{id}")
-	public ResponseEntity<Response> archeiveNote(@PathVariable Long id, @RequestHeader String token) {
-		NotesModel notesModel = notesService.archeiveNote(id, token);
+	@PutMapping("/archeiveNote/{noteId}")
+	public ResponseEntity<Response> archeiveNote(@PathVariable Long noteId, @RequestHeader String token) {
+		NotesModel notesModel = notesService.archeiveNote(noteId, token);
 		Response response = new Response(200, "Note archeived successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
@@ -95,9 +95,9 @@ public class NotesController {
 	 * Purpose:unarcheive note by id
 	 */
 
-	@PutMapping("/unarcheivenote/{id}")
-	public ResponseEntity<Response> unArcheiveNote(@PathVariable Long id, @RequestHeader String token) {
-		NotesModel notesModel = notesService.unArcheiveNote(id, token);
+	@PutMapping("/unArcheiveNote/{noteId}")
+	public ResponseEntity<Response> unArcheiveNote(@PathVariable Long noteId, @RequestHeader String token) {
+		NotesModel notesModel = notesService.unArcheiveNote(noteId, token);
 		Response response = new Response(200, "Note unarcheived successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
@@ -106,9 +106,9 @@ public class NotesController {
 	 * Purpose:trash note by id
 	 */
 
-	@PutMapping("/trashNote/{id}")
-	public ResponseEntity<Response> trashNote(@PathVariable Long id, @RequestHeader String token) {
-		NotesModel notesModel = notesService.trashNote(id, token);
+	@PutMapping("/trashNote/{noteId}")
+	public ResponseEntity<Response> trashNote(@PathVariable Long noteId, @RequestHeader String token) {
+		NotesModel notesModel = notesService.trashNote(noteId, token);
 		Response response = new Response(200, "Note trashed successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
@@ -117,9 +117,9 @@ public class NotesController {
 	 * Purpose:restore note by id
 	 */
 
-	@PutMapping("/restoreNote/{id}")
-	public ResponseEntity<Response> restoreNote(@PathVariable Long id, @RequestHeader String token) {
-		NotesModel notesModel = notesService.restoreNote(id, token);
+	@PutMapping("/restoreNote/{noteId}")
+	public ResponseEntity<Response> restoreNote(@PathVariable Long noteId, @RequestHeader String token) {
+		NotesModel notesModel = notesService.restoreNote(noteId, token);
 		Response response = new Response(200, "Note restored successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
@@ -128,9 +128,9 @@ public class NotesController {
 	 * Purpose:delete note by id
 	 */
 
-	@DeleteMapping("/deletenote/{id}")
-	public ResponseEntity<Response> deleteNote(@PathVariable Long id, @RequestHeader String token) {
-		Response notesModel = notesService.deleteNote(id, token);
+	@DeleteMapping("/deleteNote/{noteId}")
+	public ResponseEntity<Response> deleteNote(@PathVariable Long noteId, @RequestHeader String token) {
+		Response notesModel = notesService.deleteNote(noteId, token);
 		Response response = new Response(200, "Note deleted successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
@@ -139,9 +139,9 @@ public class NotesController {
 	 * Purpose:change note colour
 	 */
 
-	@PutMapping("/changeNoteColour/{id}")
-	public ResponseEntity<Response> changeNoteColour(@PathVariable Long id, @RequestParam String colour, @RequestHeader String token) {
-		NotesModel notesModel = notesService.changeNoteColour(id, colour, token);
+	@PutMapping("/changeNoteColour/{noteId}")
+	public ResponseEntity<Response> changeNoteColour(@PathVariable Long noteId, @RequestParam String colour, @RequestHeader String token) {
+		NotesModel notesModel = notesService.changeNoteColour(noteId, colour, token);
 		Response response = new Response(200, "Note colour changed successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
@@ -150,9 +150,9 @@ public class NotesController {
 	 * Purpose:pin note 
 	 */
 
-	@PutMapping("/pinNote/{id}")
-	public ResponseEntity<Response> pinNote(@PathVariable Long id, @RequestHeader String token) {
-		NotesModel notesModel = notesService.pinNote(id, token);
+	@PutMapping("/pinNote/{noteId}")
+	public ResponseEntity<Response> pinNote(@PathVariable Long noteId, @RequestHeader String token) {
+		NotesModel notesModel = notesService.pinNote(noteId, token);
 		Response response = new Response(200, "Note pinned successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
@@ -161,9 +161,9 @@ public class NotesController {
 	 * Purpose:unpin note
 	 */
 
-	@PutMapping("/unpinNote/{id}")
-	public ResponseEntity<Response> unpinNote(@PathVariable Long id, @RequestHeader String token) {
-		NotesModel notesModel = notesService.unpinNote(id, token);
+	@PutMapping("/unpinNote/{noteId}")
+	public ResponseEntity<Response> unpinNote(@PathVariable Long noteId, @RequestHeader String token) {
+		NotesModel notesModel = notesService.unpinNote(noteId, token);
 		Response response = new Response(200, "Note unpinned successfully", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
@@ -172,7 +172,7 @@ public class NotesController {
 	 * Purpose:get all pinned notes
 	 */
 
-	@GetMapping("/getallpinnednotes")
+	@GetMapping("/getAllPinnedNotes")
 	public ResponseEntity<Response> getAllPinNotes(@RequestHeader String token) {
 		List<NotesModel> notesModel = notesService.getAllPinNotes(token);
 		Response response = new Response(200, "Fetching all pinned notes successfully", notesModel);
@@ -216,9 +216,9 @@ public class NotesController {
 	 * Purpose:To collaborate
 	 */
 
-	@PutMapping("/addCollaborator")
-	public ResponseEntity<Response> addCollaborator(@RequestParam String emailId, @RequestParam Long noteId, @RequestParam List<String> collaborator) {
-		NotesModel notesModel = notesService.addCollaborator(emailId, noteId, collaborator);
+	@PutMapping("/addCollaborator/{noteId}")
+	public ResponseEntity<Response> addCollaborator(@RequestParam Long noteId, @RequestParam String collaborator, @RequestHeader String token) {
+		NotesModel notesModel = notesService.addCollaborator(noteId, collaborator, token);
 		Response response = new Response(200, "Collaborating notes", notesModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}

@@ -21,4 +21,9 @@ public interface NotesRepository extends JpaRepository<NotesModel, Long> {
 	@Query(value = "select * from notes where trash = true", nativeQuery = true)
 	List<NotesModel> findAllByTrash();
 
+	List<NotesModel> findByUserId(Long userId);
+
+	Optional<NotesModel> findByUserIdAndNoteId(Long userId, Long noteId);
+
+
 }

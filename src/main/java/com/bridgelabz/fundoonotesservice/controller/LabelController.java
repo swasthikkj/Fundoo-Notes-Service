@@ -29,7 +29,7 @@ import com.bridgelabz.fundoonotesservice.util.Response;
  */
 
 @RestController
-@RequestMapping("/labelservice")
+@RequestMapping("/labelService")
 public class LabelController {
 	@Autowired
 	ILabelService labelService;
@@ -38,9 +38,9 @@ public class LabelController {
 	 * Purpose:create label
 	 */
 	
-	@PostMapping("/createlabel")
+	@PostMapping("/createLabel")
 	public ResponseEntity<Response> createLabel(@Valid @RequestBody LabelDTO labelDTO, @RequestHeader String token) {
-		LabelModel labelModel = labelService.createLabel(labelDTO,token);
+		LabelModel labelModel = labelService.createLabel(labelDTO, token);
 		Response response = new Response(200, "Label created successfully", labelModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
@@ -49,9 +49,9 @@ public class LabelController {
 	 * Purpose:update label
 	 */
 	
-	@PutMapping("/updatelabel/{id}")
-	public ResponseEntity<Response> updateLabel(@Valid @RequestBody LabelDTO labelDTO, @PathVariable Long id, @RequestHeader String token) {
-		LabelModel labelModel = labelService.updateLabel(labelDTO,id,token);
+	@PutMapping("/updateLabel/{id}")
+	public ResponseEntity<Response> updateLabel(@Valid @RequestBody LabelDTO labelDTO, @PathVariable Long labelId, @RequestHeader String token) {
+		LabelModel labelModel = labelService.updateLabel(labelDTO, labelId, token);
 		Response response = new Response(200, "Label updated successfully", labelModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
@@ -72,8 +72,8 @@ public class LabelController {
 	 */
 	
 	@DeleteMapping("/deleteLabels")
-	public ResponseEntity<Response> deleteLabel(@PathVariable Long id, @RequestHeader String token) {
-		LabelModel labelModel = labelService.deleteLabel(id, token);
+	public ResponseEntity<Response> deleteLabel(@PathVariable Long labelId, @RequestHeader String token) {
+		LabelModel labelModel = labelService.deleteLabel(labelId, token);
 		Response response = new Response(200, "label deleted successfully", labelModel);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}

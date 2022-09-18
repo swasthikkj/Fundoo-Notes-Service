@@ -31,7 +31,7 @@ import lombok.NoArgsConstructor;
 public class NotesModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;	
+	private long noteId;	
 	private String title;
 	private String description;
 	private long userId;
@@ -44,7 +44,7 @@ public class NotesModel {
 	private String emailId;
 	private String color;
 	private String reminderTime;
-	@JsonIgnore
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<LabelModel> labellist;
 

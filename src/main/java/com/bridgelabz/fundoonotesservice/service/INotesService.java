@@ -17,27 +17,27 @@ public interface INotesService {
 	
 	NotesModel createNotes(NotesDTO notesDTO, String token);
 	
-	NotesModel updateNotes(NotesDTO notesDTO, Long id, String token);
+	NotesModel updateNotes(Long noteId, NotesDTO notesDTO, String token);
 	
 	List<NotesModel> readAllNotes(String token);
 	
-	Optional<NotesModel> readNotesById(Long id, String token);
+	Optional<NotesModel> readNotesById(Long noteId, String token);
 
-	NotesModel archeiveNote(Long id, String token);
+	NotesModel archeiveNote(Long noteId, String token);
 
-	NotesModel unArcheiveNote(Long id, String token);
+	NotesModel unArcheiveNote(Long noteId, String token);
 	
-	NotesModel trashNote(Long id, String token);
+	NotesModel trashNote(Long noteId, String token);
 
-	NotesModel restoreNote(Long id, String token);
+	NotesModel restoreNote(Long noteId, String token);
 
-	Response deleteNote(Long id, String token);
+	Response deleteNote(Long noteId, String token);
 
-	NotesModel changeNoteColour(Long id, String colour, String token);
+	NotesModel changeNoteColour(Long noteId, String colour, String token);
 
-	NotesModel pinNote(Long id, String token);
+	NotesModel pinNote(Long noteId, String token);
 
-	NotesModel unpinNote(Long id, String token);
+	NotesModel unpinNote(Long noteId, String token);
 	
 	List<NotesModel> getAllPinNotes(String token);
 
@@ -47,7 +47,7 @@ public interface INotesService {
 
 	NotesModel noteLabelList(Long noteId, Long labelId, String token);
 
-	NotesModel addCollaborator(String emailId, Long noteId, List<String> collaborator);
+	NotesModel addCollaborator(Long noteId, String collaborator, String token);
 
 	NotesModel remainder(String token, Long noteId, String remaindTime);
 	
